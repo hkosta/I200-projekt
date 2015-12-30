@@ -4,8 +4,13 @@ import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.image.Image;
 import javafx.scene.layout.Pane;
 import javafx.scene.layout.StackPane;
+import javafx.scene.paint.Color;
+import javafx.scene.paint.ImagePattern;
+import javafx.scene.shape.Rectangle;
+import javafx.scene.text.Font;
 import javafx.stage.Stage;
 
 import java.util.ArrayList;
@@ -20,8 +25,12 @@ public class LotoFrame extends Pane{
     ArrayList<String> tootaja;
     Button käivita;
     StackPane loto;
+    Rectangle taust;
     Scene lava;
     Stage alus = new Stage();
+    Image Rool = new Image("Main/resources/Rool.png");
+    ImagePattern rool = new ImagePattern(Rool);
+
 
 
     public LotoFrame(){
@@ -33,10 +42,17 @@ public class LotoFrame extends Pane{
 
     private void setupScene() {
         loto = new StackPane();
-        lava = new Scene(loto,300,200);
+        taust = new Rectangle(500, 500);
+        taust.setFill(rool);
+        loto.getChildren().add(taust);
+
+        lava = new Scene(loto,500,500);
         masin = new Label("Käivita loosimine vajutades - \"Start\" nuppu");
-        loto.setAlignment(masin, Pos.TOP_CENTER);
+        loto.setAlignment(masin,Pos.TOP_CENTER);
+        masin.setFont(Font.font(20));
         käivita = new Button("Start");
+        loto.setAlignment(käivita, Pos.BOTTOM_CENTER);
+        käivita.setFont(Font.font(30));
         loto.getChildren().addAll(masin, käivita);
 
         alus.setScene(lava);
